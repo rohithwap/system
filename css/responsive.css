@@ -1,0 +1,14 @@
+@media screen and (max-width: 480px){
+	.logo{
+		width:100px;
+	}
+	.main-menu{
+		position: fixed;
+	}
+	.mobile-hidden{
+		display: none;
+	}
+	.mobile-toggle{		
+	    display: block;
+	}	
+} 

@@ -1,0 +1,157 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="dist/semantic/semantic.css">
+		<link rel="stylesheet" href="dist/semantic/components/dropdown.min.css">
+		<link rel="stylesheet" href="dist/semantic/components/form.min.css">
+		<link href="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.semanticui.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/responsive.css">
+		
+	</head>
+	<body>
+		
+		<div class="ui stackable small menu fixed "> <!--// Menu Start //-->
+			  <div class="item main-menu">
+			  	<img class="ui logo" src="img/logo.gif">
+			  	<div class="mobile-toggle"><i class="content icon"></i></div>
+			  </div>
+			  <div class="mobile-hidden">
+			  		<a href="#" class="item">Users</a>
+					<a href="#" class="item">Job Number</a>
+					<a href="#" class="item">Estimates</a>
+					<a href="#" class="item">Approve Elements</a>
+					<a href="#" class="item">POs</a>
+					<a href="#" class="item">Invoices</a>
+			  </div>	
+			  
+		</div><!--// Menu End //-->
+		
+		<!--// Main Container Start //-->	
+		<div style="margin-top: 75px;">
+			<div class="ui grid container">
+				<div class="column row button-section">
+					<div class="right floated column">
+						<button class="ui green right floated labeled icon button show-modal" id="add___user">
+						  <i class="plus icon"></i>
+						  Add User
+						</button>
+					</div>			
+				</div>
+				<div class="row">
+					<div class="column">
+						
+					<!--// Data Tables //-->
+
+					<table class="ui celled table data-tables" cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+			                <th>Name</th>
+			                <th>Position</th>
+			                <th>Office</th>
+			                <th>Age</th>
+			                <th>Start date</th>
+			                <th>Salary</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr>
+			                <td>Tiger Nixon</td>
+			                <td>System Architect</td>
+			                <td>Edinburgh</td>
+			                <td>61</td>
+			                <td>2011/04/25</td>
+			                <td><button id="edit___user" class="ui compact labeled icon button"><i class="edit icon"></i>Edit</button></td>
+			            </tr>
+			        </tbody>
+    				</table><!--// End Data Tables //-->
+
+					</div><!--// End Column //-->		
+				</div>
+			</div>			
+		</div> <!--// Main Container End //-->
+		
+		
+<!-- // Modals -->
+		
+		<!-- // Add User -->
+		<div class="ui modal small add___user">
+		  <i class="close icon"></i>
+		  <div class="header">
+		    Add User
+		  </div>
+		  <div class="content" style="width: 60%; margin: 0px auto;">
+		  		<form class="ui form"  id="add_user" action="#"> <div class="ui form"><div class="required field"> <label>Name</label> <input type="text" placeholder="Enter User Name" name="user_name" id="user_name" autocomplete="off"></div></div><div class="ui form"><div class="required field"> <label>Password</label> <input type="text" placeholder="Enter User Password" name="user_password" id="user_password" autocomplete="off"></div></div><div class="ui form"><div class="required field"> <label>Email</label> <input type="text" placeholder="Enter User Email id" name="user_email" id="user_email" autocomplete="off"></div></div><div class="ui form"><div class="required field"> <label>Mobile</label> <input type="text" placeholder="Enter User Mobile" name="user_mobile" id="user_mobile" autocomplete="off"></div></div><div class="spacer"></div><div class="ui error message"></div></form>
+		  </div>
+		  <div class="actions">
+		    <button class="ui animated button large"  onclick="add__user()" tabindex="0" type="submit" form="add_user"> <div class="visible content">Submit</div><div class="hidden content"><i class="right arrow icon"></i> </div></button>    
+		  </div>
+		</div>
+
+		<!-- // Edit User -->
+		<div class="ui modal small edit___user">
+		  <i class="close icon"></i>
+		  <div class="header">
+		    Edit User
+		  </div>
+		  <div class="content" style="width: 60%; margin: 0px auto;">
+		  		<form class="ui form"  id="edit_user" action="#"> <div class="ui form"><div class="required field"> <label>Name</label> <input type="text" placeholder="Enter User Name" name="user_name" id="user_name" autocomplete="off"></div></div><div class="ui form"><div class="required field"> <label>Password</label> <input type="text" placeholder="Enter User Password" name="user_password" id="user_password" autocomplete="off"></div></div><div class="ui form"><div class="required field"> <label>Email</label> <input type="text" placeholder="Enter User Email id" name="user_email" id="user_email" autocomplete="off"></div></div><div class="ui form"><div class="required field"> <label>Mobile</label> <input type="text" placeholder="Enter User Mobile" name="user_mobile" id="user_mobile" autocomplete="off"></div></div><div class="spacer"></div><div class="ui error message"></div></form>
+		  </div>
+		  <div class="actions">
+		    <button class="ui animated button large"  onclick="edit__user()" tabindex="0" type="submit" form="edit_user"> <div class="visible content">Submit</div><div class="hidden content"><i class="right arrow icon"></i> </div></button>    
+		  </div>
+		</div>
+		
+		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="dist/semantic/semantic.js"></script>
+		<script src="dist/semantic/components/dropdown.min.js"></script>
+		<script src="dist/semantic/components/form.min.js"></script>
+		<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.13/js/dataTables.semanticui.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/functions.js"></script>
+		<script>
+		$(document).ready(function(){
+			
+		$('#eventdate').calendar({
+  			type: 'date',
+			monthFirst: false,
+			  formatter: {
+				date: function (date, settings) {
+				  if (!date) return '';
+				  var day = date.getDate();
+				  var month = date.getMonth() + 1;
+				  var year = date.getFullYear();
+				  formatted =  day + '/' + month + '/' + year;
+				  return formatted;
+				}
+			},
+			
+		});
+			
+			
+		$.get('app/calls.php?action=getJobnos', function(data) {
+				$('.results').hide();
+				$('.results').html("");
+				var parsed = JSON.parse(data);
+				for(var i=0; i< parsed.length; i++){
+					$('.results').append('<div>'+ parsed[i]['event'] +'-'+ parsed[i]['city'] +'-'+ parsed[i]['date'] +'</div>');
+				}
+				$('.results').show();
+		});	
+
+
+		
+		
+						  
+	})
+	
+	
+		</script>
+	</body>
+</html>

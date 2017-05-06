@@ -1,0 +1,188 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="dist/semantic/semantic.css">
+		<link rel="stylesheet" href="dist/semantic/components/dropdown.min.css">
+		<link rel="stylesheet" href="dist/semantic/components/form.min.css">
+		<link href="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		
+		<div class="ui small menu fixed"> <!--// Menu Start //-->
+			  <a class="item"style="width:200px">
+				  <img style="width:100%" src="img/logo.gif"></a>	
+			  <a href="add-client.html" class="active item">Add Client</a>
+			  <a href="add-invoice.html" class="item">Add Invoice </a>
+			  <a href="add-jobno.html"class="item">Add Job Number </a>
+			  <div class="right menu">
+				<div class="ui dropdown item">Language <i class="dropdown icon"></i> <div class="menu">
+					<a class="item">English</a>
+					<a class="item">Russian</a>
+					<a class="item">Spanish</a>
+				  </div>
+				</div>
+				<div class="item">
+					<div class="ui primary button">Sign Up</div>
+				</div>
+			  </div>
+		</div><!--// Menu End //-->
+		
+		<!--// Main Container Start //-->	
+		<div class="ui stackable two column divided grid container page" style="width: 100% !important;
+    margin: 50px; min-height: 90vh;">
+			<div class="row">
+				<div class="column">
+					<form class="ui form" id="addclient"> <!--// Start Form //-->
+						<div class="ui form">
+							<div class="required field">
+							 <input type="hidden" name="action" id="action" value="addClient">	
+							  <label>Client Name</label>
+							  <input type="text" placeholder="Enter Client Name" name="client" id="client" autocomplete="off">
+							</div>
+						</div>
+
+						<div class="spacer"></div>
+
+						<div class="ui form">
+							<button class="ui animated submit button large" id="submit" tabindex="0" type="submit">
+							  <div class="visible content">Submit</div>
+							  <div class="hidden content">
+								<i class="right arrow icon"></i>
+							  </div>
+							</button>
+							<div class="ui error message"></div>
+							<div class="server-status"></div>
+						</div><br>
+
+						<div class="spacer"></div>
+
+
+					</form><!--// End Form //-->
+				</div>
+				
+				<div class="column">
+					<p><b>Already In Database</b></p>
+					<div class="results">
+					
+					</div>
+				</div>
+			</div>
+		</div> <!--// Main Container End //-->
+		
+		<!--// Modal -->
+		<div class="ui basic modal">
+		  <div class="ui icon header">
+			<i class="archive icon"></i>
+			Archive Old Messages
+		  </div>
+		  <div class="content">
+			<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+		  </div>
+		  <div class="actions">
+			<div class="ui red basic cancel inverted button">
+			  <i class="remove icon"></i>
+			  No
+			</div>
+			<div class="ui green ok inverted button">
+			  <i class="checkmark icon"></i>
+			  Yes
+			</div>
+		  </div>
+		</div>
+		
+		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="dist/semantic/semantic.js"></script>
+		<script src="dist/semantic/components/dropdown.min.js"></script>
+		<script src="dist/semantic/components/form.min.js"></script>
+		<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.js"></script>
+		<script>
+		$(document).ready(function(){
+			
+		// Form Validation		
+		$('.ui.form')
+		  .form({
+			fields: {
+			  client     	: 'empty'			  		  
+			}
+		  });	
+		
+		$('body').on('submit','#addclient',function(e){
+			e.preventDefault(e); // Prevent Form Submition			
+			
+			if ( $('form').form('is valid') ) {
+				
+				$('#submit').addClass('loading disabled'); // Disable Multiple Submition
+				
+				var data = $('form').serialize()
+				
+				var request = $.ajax({
+				  url: "app/calls.php",
+				  method: "POST",
+				  data: data,
+				  dataType: "html"				  	
+				});
+
+				request.done(function( data ) {
+				 if(data == 0){
+					$('.submit').removeClass("loading disabled");
+					$('.server-status').html(""); 
+					$('.server-status').fadeIn(300).delay(5000).fadeOut(1000);
+					$('.server-status').prepend('<div class="ui negative message">  <i class="close icon"></i>  <div class="header">Were sorry  </div><p>We could not add this client </p></div>')
+					$('.submit').removeClass("loading disabled");
+				 }
+				else if (data == 1){
+					$('.submit').removeClass("loading disabled");
+					$('form').form('clear');
+					$('#action').val('addClient');
+					$('.server-status').html("");
+					$('.server-status').fadeIn(300).delay(5000).fadeOut(1000);
+					$('.server-status').prepend('<div class="ui positive message"><i class="close icon"></i><div class="header">Success</div><p>Client has been sucessfully added.</p></div>')
+				} 	
+				});
+
+				request.fail(function( jqXHR, textStatus ) {
+				  alert( "Request failed: " + textStatus );
+				});
+			
+			} else {
+				
+				console.log('in-valid');
+				
+			}
+			
+			
+        });
+			
+			
+		$('#client').keyup(function(e) {
+			clearTimeout($.data(this, 'timer'));
+			if (e.keyCode == 13)
+			  search(true);
+			else
+			  $(this).data('timer', setTimeout(search, 500));
+		});
+		function search(force) {
+			var existingString = $("#client").val();
+			if (!force && existingString.length < 3) return; //wasn't enter, not > 2 char
+			$.get('app/calls.php?action=getClientList&q=' + existingString, function(data) {
+				$('.results').hide();
+				$('.results').html("");
+				var parsed = JSON.parse(data);
+				for(var i=0; i< parsed.length; i++){
+					$('.results').append('<div>'+ parsed[i]['clientname'] +'</div>');
+				}
+				$('.results').show();
+			});
+		}	
+
+		
+						  
+	})
+	
+	
+		</script>
+	</body>
+</html>

@@ -1,0 +1,6 @@
+#xyz_xyz ===> button to open modal
+.xyz___xyz ===> Modal Class
+
+#xyz_xyz ===> Form Id
+
+function add__user()  ===> Validate & Submit to server

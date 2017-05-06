@@ -1,0 +1,213 @@
+body{
+	background: #f9f9f9;
+}
+.form{
+	width: 100%;
+	margin: 0px auto;
+}
+.spacer{
+	margin: 20px 0px;
+}
+.page{
+	padding: 100px;
+    background: #ffffff;
+}
+.server-status{
+	margin-top: 20px;
+	display: none;
+}
+.results div{
+	padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+#addpayment{
+	width: 50%;
+}
+.menu{
+	transition: .2s ease-in-out;
+}
+.logo{
+	width: 200px
+}
+.mobile-hidden{
+	display: flex;
+}
+.mobile-toggle{
+	position: absolute;
+    right: 5px;
+    display: none;
+}
+.visible-custom{
+	display: block !important;
+	opacity: 1 !important;
+}
+.button-section{
+	border-bottom: 2px solid #eaeaea;
+    margin-bottom: 10px;
+}
+.login-container {
+	width: 450px;
+    margin: 0px auto;
+    margin-top: 8%;
+    height: 450px;
+    background: #FFF;
+    padding: 20px;
+    border-bottom: 5px solid #000;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container input{
+	width: 350px;
+}
+.login_failed{
+	font-size: 20px;
+    color: #000;   
+    padding: 10px;
+    width: 200px;
+    margin: 0px auto;
+    margin-top: 10px;
+}
+
+/*Over write default modal behaviour*/
+
+.scrolling.undetached.dimmable.dimmed > .dimmer {
+    overflow: scroll !important;	
+}
+.scrolling.dimmable.dimmed > .dimmer{
+	overflow: scroll !important;		
+}
+
+/*Force Fields to have a margin*/
+.field{
+	margin: 0 0 1em !important;	
+}
+
+.ui.circular.labels .label, .ui.circular.label {
+    min-width: 1em !important; 
+  	min-height: 1em !important; 
+    padding: 0.5em !important; 
+    line-height: 1em;
+    text-align: center;
+    border-radius: 500rem;
+}
+.status{
+	text-transform: uppercase !important;
+}
+.quantity{
+	margin-top: 5px;
+}
+.rej{
+	color: red;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+.log{
+	cursor: pointer;
+}
+.log-slider{	
+	padding: 30px;
+    position: fixed;
+    top: 0px;
+    right: 0;
+    width: 60vw;
+    background: #FFF;
+    height: 100vh;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
+    right: -80vw;
+    transition: .2s ease-in-out;
+    z-index: 999;
+}
+.log-slider-visible{
+	right: 0px;	
+}
+.heading{
+	font-size: 20px;
+    border-bottom: 2px solid #e0e0e0;
+    padding: 10px 0px;
+}
+.log-slider-content{
+	padding: 20px 0px;
+}
+.close-log{
+	padding: 5px 0px;
+    float: right;
+    font-size: 15px;
+    cursor: pointer;
+}
+.close-log i.icon{
+	margin: 0px !important;
+	width: 100%;
+}
+.log-slider-content {
+    padding: 20px 0px;
+    height: 550px;
+    overflow-y: scroll;
+}
+#log-slider-content::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+#log-slider-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0);
+    background-clip: content-box;
+}
+ 
+#log-slider-content::-webkit-scrollbar-thumb {
+  background-color: #f3f3f3;
+  outline: 0px solid slategrey;
+  height:20px;
+}
+
+.header > span{
+	color: #3993cc;
+}
+
+.po-slider{	
+	padding: 30px;
+    position: fixed;
+    top: 0px;
+    right: 0;
+    width: 60vw;
+    background: #FFF;
+    height: 100vh;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
+    right: -80vw;
+    transition: .2s ease-in-out;
+    z-index: 999;
+}
+
+.po-slider-visible{
+	right: 0px;	
+}
+
+.close-po{
+	width: 35px;
+    float: right;
+}
+
+.close-po i.icon{
+	margin: 0px !important;
+	width: 100%;
+}
+.po-slider-content {
+    padding: 20px 0px;
+    height: 550px;
+    overflow-y: scroll;
+}
+#po-slider-content::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+#po-slider-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0);
+    background-clip: content-box;
+}
+ 
+#po-slider-content::-webkit-scrollbar-thumb {
+  background-color: #f3f3f3;
+  outline: 0px solid slategrey;
+  height:20px;
+}
+#makePo{
+	margin-top: 20px;
+}
