@@ -585,10 +585,11 @@ $readable = " ".$_SESSION['user']['user_name']." has updated costing for element
 		$email = $_POST['email'];
 		$subject = $_POST['subject'];
 		$html = $_POST['html'];
-		$pass = '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'; // not the key, but the token
-		$url = 'https://api.sendgrid.com/';
+		
+		// Authorization Creds
+		include('mail-auth.php');
 
-		//remove the user and password params - no longer needed
+		//removed the user and password params - no longer needed
 		$params = array(
 		    'to'        => $email,     
 		    'subject'   => $subject,
